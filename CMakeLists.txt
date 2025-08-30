@@ -391,8 +391,8 @@ endif(MSVC)
 
 # with gcc 7.0 and above we need to mark fallthrough in switch case statements
 # that can be done in comments for backcompat, but CCACHE removes comments.
-# -C makes gcc keep comments.
-if(USE_CCACHE)
+# -C makes gcc keep comments. However, clang doesn't support this flag.
+if(USE_CCACHE AND CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -C")
 endif()
 
